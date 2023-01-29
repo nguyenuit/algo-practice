@@ -13,7 +13,7 @@
 // Expected output
 // [9, 40, 1, 10, 20, 0, 59, 86, 32, 11]
 
-function solveProblem(){
+function solveProblem(input, n){
 
 }
 
