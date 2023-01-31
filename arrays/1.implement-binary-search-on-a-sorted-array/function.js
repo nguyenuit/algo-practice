@@ -17,22 +17,17 @@ function binarySearch(nums, target){
 
     let low = 0;
     let high = nums.length - 1;
-    let middleIndex = Math.round((low + high) / 2);
 
     while (low <= high){
+        
+        let mid = Math.round((low + high) / 2);
 
-        let middle = nums[middleIndex];
+        if (target == nums[mid]) return mid;
 
-        if (target == middle) return middleIndex;
-
-        if (target > middle){
-            low = middleIndex;
-            middleIndex = Math.round((low + high) / 2);
-            if (middleIndex == (nums.length - 2)) middleIndex = nums.length - 1;
+        if (target > nums[mid]){
+            low = mid + 1;
         }else{
-            high = middleIndex;
-            middleIndex = Math.round((low + high) / 2);
-            if (middleIndex == 1) middleIndex = 0;
+            high = mid - 1;
         }
     }
 
@@ -40,6 +35,6 @@ function binarySearch(nums, target){
 }
 
 const nums = [1,3,9,10,12]
-const target = 3
+const target = 12
 const result = binarySearch(nums, target)
 console.log(result);
