@@ -10,29 +10,34 @@
 // ### Sample input
 // [7, 1, 5, 3, 6, 4]
 // Expected output
-// (2, 5)
+// [1, 6]
 
-function calMaxProfit(input){
-  let sell = 0;
-  let sellIndex = 0;
+function calMaxProfit(nums){
+  if (!nums || nums.length < 2){
+    return;
+  }
 
-  for (let i = 1; i < input.length; i++){
-  	if (input[i] > sell){
-    	sell = input[i];
-      sellIndex = i;
+  let currentBuy = nums[0];
+  let globalSell = nums[1];
+  let globalProfit = globalSell - currentBuy;
+  let currentProfit = 0;
+  
+  for(let i = 1; i< nums.length; i++){
+    currentProfit = nums[i] - currentBuy;
+
+    if (currentProfit > globalProfit){
+      globalProfit = currentProfit;
+      globalSell = nums[i];
+    }
+
+    if (currentBuy > nums[i]){
+      currentBuy = nums[i];
     }
   }
   
-  let buy = input[0];
-  for (let j = 1; j < sellIndex; j++){
-  	if (input[j] < buy){
-    	buy = input[j];
-    }
-  }
-
-  return {buy, sell};
+  return [globalSell - globalProfit, globalSell];
 }
 
-const input = [1, 2, 3, 4, 3, 2, 1, 2, 5];
+const input = [8, 6, 5, 4, 3, 2, 1];
 const output = calMaxProfit(input);
 console.log(output);
