@@ -24,24 +24,22 @@ function findLowIndex(nums, target){
     }
 
     while(start <= end){
-    
-        mid = start + Math.round((end - start) / 2);
-        console.log('mid', mid);
         if (nums[mid] < target){
-            // target in right part
             start = mid + 1;
         }else{
-            // target in left part or target is mid
             end = mid - 1;
         }
-        // console.log(start, mid, end);
+        mid = start + Math.round((end - start) / 2);
     }
 
-    return mid;
+    if (nums[start] == target){
+        return start;
+    }
+
+    return -1;
 }
 
 const input = [1, 1, 2, 3, 5, 5, 5, 5, 5, 6];
 const target = 5;
 const output = findLowIndex(input, target)
 console.log(output);
-
