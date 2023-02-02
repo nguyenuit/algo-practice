@@ -13,35 +13,35 @@
 // Expected output
 // [9, 40, 1, 10, 20, 0, 59, 86, 32, 11]
 
+function reverseArray(nums, start, end){
+    while(start < end){
+        let tmp  = nums[start];
+        nums[start] = nums[end];
+        nums[end] = tmp;
+        start++;
+        end--;
+    }
+
+    return nums;
+}
+
 function solveProblem(nums, n){
-    
-    let x = nums.length - n;
-    let y = nums.length - 1;
-
-    for (let i = x; i < nums.length - 1; i++){
-        let tmp = nums[x];
-        nums[x] = nums[y];
-        nums[y] = tmp;
-        y--;
+    if (n > nums.length){
+        n = n % nums.length;
     }
 
-    y = x - 1;
-    for (let i = 0; i < y; i++){
-        let tmp = nums[i];
-        nums[i] = nums[y];
-        nums[y] = tmp;
-        y--;
+    if(n < 0){
+        n = n + nums.length;
     }
 
-    let nums2 = [];
-    for(let i = nums.length -1; i >= 0; i--){
-        nums2.push(nums[i]);
-    }
+    nums = reverseArray(nums, 0, nums.length - 1);
+    nums = reverseArray(nums, 0, n - 1);
+    nums = reverseArray(nums, n, nums.length - 1);
 
-    return nums2;
+    return nums;
 }
 
 let input = [1, 10, 20, 0, 59, 86, 32, 11, 9, 40];
-let n = 2;
+let n = 11;
 let output = solveProblem(input, n);
 console.log(output);
