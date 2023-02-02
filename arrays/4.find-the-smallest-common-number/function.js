@@ -16,19 +16,20 @@ function solveProblem(v1, v2, v3){
     let i = j = k = 0;
 
     while (i < v1.length && j < v2.length && k < v3.length){
-        if (v1[i] < v2[i] && v1[i] < v3[i]){
+
+        if (v1[i] == v2[j] && v2[j] == v3[k]) return v1[i];
+
+        if (v1[i] <= v2[j] && v1[i] <= v3[k]){
             i++;
         }
-        if (v2[j] < v1[j] && v2[j] < v3[j]){
+        else if (v2[j] <= v1[i] && v2[j] <= v3[k]){
             j++;
         }
-        if (v3[k] < v1[k] && v3[k] < v2[k]){
+        else if (v3[k] <= v1[i] && v3[k] <= v2[j]){
             k++;
         }
-
-        console.log(i,j,k);
     }
-    
+
     return -1;
 }
 const v1 = [6, 7, 10, 25, 30, 63, 64];
