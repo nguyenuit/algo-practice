@@ -12,24 +12,28 @@
 // Expected output
 // True
 
-function solveProblemUnSorted(nums, val){
+function solveProblem(nums, val){
     if (!nums || nums.length == 0){
         return;
     }
 
-    const handle = [];
-    for(let i = 0; i < nums.length; i++){
-        if (!handle.includes(val - nums[i])){
-            handle.push(nums[i]);
+    let start = 0;
+    let end = nums.length - 1;
+    let sum = nums[start] + nums[end];
+    while(start < end){
+        if (sum == val) return true;
+        if (sum > val){
+            end--;
         }else{
-            return true;
+            start++;
         }
+        sum = nums[start] + nums[end];
     }
-
+    
     return false;
 }
 
-const input = [5, 7, 1, 2, 8, 4, 3];
-const val = 10;
-const output = solveProblemUnSorted(input, val);
+const input = [1, 2, 3, 4, 8, 9, 10];
+const val = 18;
+const output = solveProblem(input, val);
 console.log(output);
