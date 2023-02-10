@@ -15,8 +15,30 @@
 // Expected output
 // [0, 0, 1, 1, 2, 2]
 
-function solveProblem(){
+function solveProblem(nums){
+    let start = 0;
+    let end = nums.length - 1;
+    let index = 0;
 
+    while (start < end && index <= end){
+        if (nums[index] == 0){
+            let tmp = nums[start];
+            nums[start] = nums[index];
+            nums[index] = tmp;
+            start++;
+            index++;
+        }else if(nums[index] == 2){
+            let tmp = nums[end];
+            nums[end] = nums[index];
+            nums[index] = tmp;
+            end--;
+            index++;
+        }else{
+            index++;
+        }
+    }
+
+    return nums;
 }
 
 const input = [2, 0, 2, 1, 1, 0];
