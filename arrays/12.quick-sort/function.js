@@ -1,3 +1,8 @@
+// @todo: implement quick sort with 3 cases for pivot
+// 1. pivot is a first item
+// 2. pivot is a middle item
+// 3. pivot is a last item
+
 function swap(items, leftIndex, rightIndex){
     var temp = items[leftIndex];
     items[leftIndex] = items[rightIndex];
